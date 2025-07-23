@@ -5,7 +5,7 @@ import re
 from enum import Enum
 from typing import List
 from sqlmodel import Relationship
-from app.models.ProgressRecord import ProgressRecord
+
 
 class Gender(str, Enum):
     male = "Male"
@@ -41,6 +41,12 @@ class StudentCreate(SQLModel):
     admission_date: str
     aadhar_number: str
 
+class user(SQLModel):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    username: str
+    password: str
+    role: str
+
 class Student(SQLModel, table=True):
      id: Optional[int] = Field(default=None, primary_key=True)
      name: str
@@ -51,19 +57,19 @@ class Student(SQLModel, table=True):
      gender: Gender
      father_name: str
      mother_name: Optional[str] = None
-     phone:str = None
+     phone: str = None
      address: Optional[str] = None
      email: Optional[str] = None
      blood_group: Optional[str] = None
      admission_date: str
      aadhar_number: str
-     progress: List["ProgressRecord"] = Relationship(back_populates="student")
+     progress: list["ProgressRecord"] = Relationship(back_populates="student")  # string reference
 
      @validator("aadhar_number")
      def aadhar_must_be_12_digits(cls, v):
-             if not re.fullmatch(r"\d{12}", v):
-                 raise ValueError("Aadhar number must be exactly 12 digits")
-             return v
+         if not re.fullmatch(r"\d{12}", v):
+             raise ValueError("Aadhar number must be exactly 12 digits")
+         return v
      
      @validator("phone")
      def phone_must_be_10_digits(cls, v):

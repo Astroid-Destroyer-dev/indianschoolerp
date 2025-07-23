@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
 from typing import List, Optional
 
-from app.models.students import Student, StudentCreate, ClassName
+from app.models.students import Student, StudentCreate, ClassModel
 from app.db import get_session 
 
 router = APIRouter(prefix="/students", tags=["Students"])
@@ -17,7 +17,7 @@ def create_student(student: StudentCreate, session: Session = Depends(get_sessio
 
 @router.get("/", response_model=List[Student])
 def read_students(
-    class_name: Optional[ClassName] = None,
+    class_name: Optional[ClassModel] = None,
     section: Optional[str] = None,
     session: Session = Depends(get_session)
 ):
@@ -31,7 +31,7 @@ def read_students(
 
 @router.get("/", response_model=List[Student])
 def read_students(
-    class_name: Optional[ClassName] = None,
+    class_name: Optional[ClassModel] = None,
     section: Optional[str] = None,
     session: Session = Depends(get_session)
 ):
