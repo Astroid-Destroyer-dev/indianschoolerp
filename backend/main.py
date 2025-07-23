@@ -4,11 +4,16 @@ from app.db import create_db_and_tables, get_session
 from sqlmodel import Session, select
 from typing import List
 from fastapi import FastAPI
-from app.routes import student
+from app.routes import student, classes, user_routes
 
 
-app = FastAPI()
+app = FastAPI(  title="Indian School ERP",
+    description="An Open Source School ERP System",
+    version="1.0.0")
+
 app.include_router(student.router)
+app.include_router(classes.router)
+app.include_router(user_routes.router)
 
 @app.on_event("startup")
 def on_startup():

@@ -17,29 +17,14 @@ def create_student(student: StudentCreate, session: Session = Depends(get_sessio
 
 @router.get("/", response_model=List[Student])
 def read_students(
-    class_name: Optional[ClassModel] = None,
-    section: Optional[str] = None,
+    class_id: Optional[int] = None,
+    section_id: Optional[int] = None,
     session: Session = Depends(get_session)
 ):
     query = select(Student)
-    if class_name:
-        query = query.where(Student.class_name == class_name)
-    if section:
-        query = query.where(Student.section == section)
+    if class_id:
+        query = query.where(Student.class_id == class_id)
+    if section_id:
+        query = query.where(Student.section_id == section_id)
     results = session.exec(query).all()
     return results
-
-@router.get("/", response_model=List[Student])
-def read_students(
-    class_name: Optional[ClassModel] = None,
-    section: Optional[str] = None,
-    session: Session = Depends(get_session)
-):
-    query = select(Student)
-    if class_name:
-        query = query.where(Student.class_name == class_name)
-    if section:
-        query = query.where(Student.section == section)
-    results = session.exec(query).all()
-    return results
-
