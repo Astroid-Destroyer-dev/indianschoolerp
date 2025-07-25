@@ -1,5 +1,4 @@
 from sqlmodel import SQLModel, Session, create_engine
-from app.models.students import Student, ClassModel, SectionModel
 from typing import Generator
 
 DATABASE_URL = "sqlite:///school.db"

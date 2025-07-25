@@ -7,14 +7,18 @@ from fastapi import FastAPI
 from app.routes import student, classes, user_routes
 from app.routes import router_progression
 from app.routes import export_to_excel
+from app.routes.fees_router import router as fees_router
+
 app = FastAPI(  title="Indian School ERP",
     description="An Open Source School ERP System",
     version="1.0.0")
+
 app.include_router(export_to_excel.router)
 app.include_router(router_progression.router)
 app.include_router(student.router)
 app.include_router(classes.router)
 app.include_router(user_routes.router)
+app.include_router(fees_router, prefix="/fees", tags=["Fees Management"])
 
 @app.on_event("startup")
 def on_startup():

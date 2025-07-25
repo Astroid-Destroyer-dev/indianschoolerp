@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'HindiFont';
+            src: url('fonts/NotoSansDevanagari-Regular.ttf') format('truetype');
+        }
+        body {
+            font-family: 'HindiFont', sans-serif;
+            margin: 40px;
+        }
+        .header {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">ग्रामीण बाल सदन इन्टर कॉलेज तिसोतरा (बिजनौर उ.प्र.)</div>
+    <h2>फीस रसीद</h2>
+    <table>
+        <tr>
+            <td>SR:</td><td>{{ student_id }}</td>
+        <tr>
+            <td>रसीद संख्या:</td><td>{{ receipt_number }}</td>
+        </tr>
+        <tr>
+            <td>छात्र का नाम:</td><td>{{ student_name }}</td>
+        </tr>
+        <tr>
+            <td>पिता का नाम:</td><td>{{ father_name }}</td>
+        </tr>
+        <tr>
+            <td>भुगतान तिथि:</td><td>{{ payment_date }}</td>
+        </tr>
+        <tr>
+            <td>राशि:</td><td>{{ amount_paid }}</td>
+        </tr>
+        <tr>
+            <td>भुगतान का तरीका:</td><td>{{ payment_mode }}</td>
+        </tr>
+        <tr>
+            <td>रसीद अपलोड करने वाला:</td><td>{{ uploaded_by }}</td>
+        </tr>
+        <tr>
+            <td>अन्य:</td><td></td>
+    </table>
+</body>
+</html>
