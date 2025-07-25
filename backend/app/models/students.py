@@ -39,7 +39,10 @@ class StudentCreate(SQLModel):
     email: Optional[str] = None
     blood_group: Optional[str] = None
     admission_date: str
+    academic_year: str
     aadhar_number: str
+    pen: int
+
 
 class user(SQLModel,table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -64,6 +67,8 @@ class Student(SQLModel, table=True):
     blood_group: Optional[str] = None
     admission_date: str
     aadhar_number: str
+    academic_year: str
+    pen: int
 
     @validator("aadhar_number")
     def aadhar_must_be_12_digits(cls, v):
