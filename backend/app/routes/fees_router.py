@@ -4,10 +4,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.db import get_session
 from sqlmodel import Session
 from app.models.students import Student
-from reportlab.lib.pagesizes import A4
 from app.models.users import User
 from jinja2 import Environment, FileSystemLoader
-from fastapi.responses import FileResponse, HTMLResponse  # Updated imports
+from fastapi.responses import  HTMLResponse  
 from sqlalchemy import select   
 
 

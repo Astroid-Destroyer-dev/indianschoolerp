@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlmodel import Session, select
 from typing import List, Optional
 
-from app.models.students import Student, StudentCreate, ClassModel
+from app.models.students import Student, StudentCreate
 from app.db import get_session 
 
 router = APIRouter(prefix="/students", tags=["Students"])
