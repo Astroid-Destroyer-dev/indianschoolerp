@@ -3,15 +3,16 @@ from app.models.students import Student
 from app.db import create_db_and_tables, get_session
 from sqlmodel import Session, select
 from typing import List
-from fastapi import FastAPI
 from app.routes import student, classes, user_routes
 from app.routes import router_progression
 from app.routes import export_to_excel
-from app.routes import fees_router
+from app.routes.fees_router import fees_router  # Import the router object directly
 
-app = FastAPI(  title="Indian School ERP",
+app = FastAPI(
+    title="Indian School ERP",
     description="An Open Source School ERP System",
-    version="1.0.0")
+    version="1.0.0"
+)
 
 app.include_router(export_to_excel.router)
 app.include_router(router_progression.router)

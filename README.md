@@ -4,11 +4,13 @@ you must have **Python 3.9+** make virtual env in backend folder
 
 ```cd backend
 python -m venv venv
-pip install -r req.txt
 ```
 activate the enviroment (In windows) using this 
 ``` ./venv/Scripts/activate
 ``` 
+pip install -r req.txt
+```
+
 or 
 ```
 source ./venv/Scripts/activate

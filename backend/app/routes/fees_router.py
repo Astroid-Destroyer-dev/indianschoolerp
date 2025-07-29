@@ -6,13 +6,14 @@ from sqlmodel import Session
 from app.models.students import Student
 from app.models.users import User
 from jinja2 import Environment, FileSystemLoader
-from fastapi.responses import  HTMLResponse  
+from fastapi.responses import HTMLResponse  
 from sqlalchemy import select   
 
+# Change the router name to match the import in main.py
+fees_router = APIRouter()
 
-router = APIRouter()
-
-@router.post("/fee-structure")
+# Update all router decorators to use fees_router instead of router
+@fees_router.post("/fee-structure")
 def create_fee_structure(fee: FeeStructureCreate, session: Session = Depends(get_session)):
     # Add validation for reasonable fee amounts
     if fee.amount <= 0 or fee.amount > 1000000:  # adjust max limit as needed
@@ -26,7 +27,7 @@ def create_fee_structure(fee: FeeStructureCreate, session: Session = Depends(get
     session.commit()
     session.refresh(new_fee)
     return new_fee
-@router.post("/fee-payment")
+@fees_router.post("/fee-payment")
 def record_fee_payment(payment: StudentFeePaymentCreate, session: Session = Depends(get_session)):
     # Check if receipt number already exists
     existing_payment = session.query(StudentFeeRecord).filter(
@@ -51,7 +52,7 @@ def record_fee_payment(payment: StudentFeePaymentCreate, session: Session = Depe
     session.commit()
     session.refresh(new_payment)
     return new_payment
-@router.get("/student/{student_id}/fee-dues")
+@fees_router.get("/student/{student_id}/fee-dues")
 def get_student_fee_dues(student_id: int, session: Session = Depends(get_session)):
     student = session.get(Student, student_id)
     if not student:
@@ -96,7 +97,7 @@ def get_student_fee_dues(student_id: int, session: Session = Depends(get_session
         ],
         "payments": payment_details
     }
-@router.get("/fees/receipt/{receipt_number}", response_class=HTMLResponse)
+@fees_router.get("/fees/receipt/{receipt_number}", response_class=HTMLResponse)
 def view_receipt(receipt_number: str, session: Session = Depends(get_session)):
     try:
         # Query student & receipt details
