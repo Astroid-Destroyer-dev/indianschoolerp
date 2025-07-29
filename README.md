@@ -6,6 +6,13 @@ you must have **Python 3.9+** make virtual env in backend folder
 python -m venv venv
 pip install -r requirement.txt
 ```
+activate the enviroment (In windows) using this 
+``` ./venv/Scripts/activate
+``` 
+or 
+```
+source /venv/Scripts/activate
+```
 
 Now run the server
 

@@ -7,7 +7,7 @@ from fastapi import FastAPI
 from app.routes import student, classes, user_routes
 from app.routes import router_progression
 from app.routes import export_to_excel
-from app.routes.fees_router import router as fees_router
+from app.routes import fees_router
 
 app = FastAPI(  title="Indian School ERP",
     description="An Open Source School ERP System",
