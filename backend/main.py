@@ -6,14 +6,22 @@ from typing import List
 from app.routes import student, classes, user_routes
 from app.routes import router_progression
 from app.routes import export_to_excel
-from app.routes.fees_router import fees_router  # Import the router object directly
+from app.routes.fees_router import fees_router 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI(
     title="Indian School ERP",
     description="An Open Source School ERP System",
     version="1.0.0"
 )
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # React Dev Server URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(export_to_excel.router)
 app.include_router(router_progression.router)
 app.include_router(student.router)
